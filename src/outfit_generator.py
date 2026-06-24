@@ -43,9 +43,6 @@ def generate_outfit(outfit_id):
         outfit["accessory_1_id"]
     )
 
-    # FAISS removed for Streamlit deployment
-    similar_products = []
-
     recommendation = {
 
         "theme": outfit["theme"],
@@ -53,38 +50,29 @@ def generate_outfit(outfit_id):
         "occasion": outfit["occasion"],
 
         "topwear":
-        hero["name"] if hero is not None else None,
+        hero["name"] if hero is not None else "N/A",
 
-        "topwear_image":
-        "data/" + hero["image"]
-        if hero is not None else None,
+        "topwear_image": None,
 
         "bottomwear":
-        second["name"] if second is not None else None,
+        second["name"] if second is not None else "N/A",
 
-        "bottomwear_image":
-        "data/" + second["image"]
-        if second is not None else None,
+        "bottomwear_image": None,
 
         "footwear":
-        footwear["name"] if footwear is not None else None,
+        footwear["name"] if footwear is not None else "N/A",
 
-        "footwear_image":
-        "data/" + footwear["image"]
-        if footwear is not None else None,
+        "footwear_image": None,
 
         "accessory":
-        accessory["name"] if accessory is not None else None,
+        accessory["name"] if accessory is not None else "N/A",
 
-        "accessory_image":
-        "data/" + accessory["image"]
-        if accessory is not None else None,
+        "accessory_image": None,
 
         "reason":
         outfit["stylist_rationale"],
 
-        "similar_products":
-        similar_products
+        "similar_products": []
     }
 
     return recommendation
