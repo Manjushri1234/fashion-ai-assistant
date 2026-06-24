@@ -105,23 +105,42 @@ if st.button("Recommend Outfit"):
 
                 st.markdown("---")
 
-                col1, col2, col3, col4 = st.columns(4)
+            col1, col2, col3, col4 = st.columns(4)
 
-                with col1:
+            with col1:
 
                     st.markdown("### Topwear")
 
+                    st.write(
+                        "IMAGE PATH:",
+                        recommendation["topwear_image"]
+                    )
+
                     if recommendation["topwear_image"]:
+
+                        st.write(
+                            "FILE EXISTS:",
+                            os.path.exists(
+                                recommendation["topwear_image"]
+                            )
+                        )
+
                         st.image(
                             recommendation["topwear_image"],
                             use_container_width=True
+                        )
+
+                    else:
+
+                        st.error(
+                            "Image path is None"
                         )
 
                     st.write(
                         recommendation["topwear"]
                     )
 
-                with col2:
+            with col2:
 
                     st.markdown("### Bottomwear")
 
@@ -143,7 +162,7 @@ if st.button("Recommend Outfit"):
                             "Single-piece outfit"
                         )
 
-                with col3:
+            with col3:
 
                     st.markdown("### Footwear")
 
@@ -157,7 +176,7 @@ if st.button("Recommend Outfit"):
                         recommendation["footwear"]
                     )
 
-                with col4:
+            with col4:
 
                     st.markdown("### Accessory")
 
@@ -171,20 +190,4 @@ if st.button("Recommend Outfit"):
                         recommendation["accessory"]
                     )
 
-                st.markdown("---")
-
-                st.subheader(
-                    "Why This Outfit?"
-                )
-
-                st.write(
-                    recommendation["reason"]
-                )
-
-                st.markdown("---")
-
-    else:
-
-        st.warning(
-            "Please enter a query."
-        )
+                

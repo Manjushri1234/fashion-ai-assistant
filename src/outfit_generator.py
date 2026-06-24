@@ -22,28 +22,31 @@ def get_image_path(product):
 
     try:
 
-        image_path = str(product["image"]).strip()
+        image_path = str(
+            product["image"]
+        ).strip()
 
-        full_path = os.path.abspath(
-            os.path.join(
-                os.path.dirname(__file__),
-                "..",
-                "data",
-                image_path
-            )
+        full_path = os.path.join(
+            os.path.dirname(__file__),
+            "..",
+            "data",
+            image_path
         )
 
-        print("IMAGE PATH:", full_path)
-        print("EXISTS:", os.path.exists(full_path))
+        full_path = os.path.abspath(
+            full_path
+        )
 
-        if os.path.exists(full_path):
-            return full_path
+        return full_path
 
     except Exception as e:
 
-        print("IMAGE ERROR:", e)
+        print(
+            "IMAGE ERROR:",
+            e
+        )
 
-    return None
+        return None
 
 
 def generate_outfit(outfit_id):
@@ -115,16 +118,3 @@ def generate_outfit(outfit_id):
     }
 
     return recommendation
-
-
-if __name__ == "__main__":
-
-    recommendation = generate_outfit(
-        "outfit_M4"
-    )
-
-    print("\nRecommended Outfit\n")
-
-    for key, value in recommendation.items():
-
-        print(f"{key}: {value}")
