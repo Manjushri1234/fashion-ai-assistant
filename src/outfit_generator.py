@@ -2,63 +2,6 @@ from data_loader import load_products
 from data_loader import load_outfits
 import os
 
-
-def get_product(products, product_id):
-
-    product = products[
-        products["id"] == product_id
-    ]
-
-    if product.empty:
-        return None
-
-    return product.iloc[0]
-
-
-def get_image_path(product):
-
-    if product is None:
-
-        print("PRODUCT IS NONE")
-        return None
-
-    try:
-
-        image_path = str(
-            product["image"]
-        ).strip()
-
-        print("IMAGE COLUMN VALUE:", image_path)
-
-        full_path = os.path.join(
-            os.path.dirname(__file__),
-            "..",
-            "data",
-            image_path
-        )
-
-        full_path = os.path.abspath(
-            full_path
-        )
-
-        print("FULL PATH:", full_path)
-        print(
-            "FILE EXISTS:",
-            os.path.exists(full_path)
-        )
-
-        return full_path
-
-    except Exception as e:
-
-        print(
-            "IMAGE ERROR:",
-            e
-        )
-
-        return None
-
-
 def generate_outfit(outfit_id):
 
     products = load_products()
@@ -72,6 +15,14 @@ def generate_outfit(outfit_id):
         products,
         outfit["hero_id"]
     )
+
+    print("\n===== HERO PRODUCT =====")
+    print(hero)
+    print(
+        "HERO IMAGE:",
+        hero["image"] if hero is not None else "NONE"
+    )
+    print("========================\n")
 
     second = get_product(
         products,
