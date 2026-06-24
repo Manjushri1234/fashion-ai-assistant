@@ -22,7 +22,7 @@ def get_image_path(product):
 
     try:
 
-        image_path = product["image"]
+        image_path = str(product["image"]).strip()
 
         full_path = os.path.abspath(
             os.path.join(
@@ -33,11 +33,15 @@ def get_image_path(product):
             )
         )
 
+        print("IMAGE PATH:", full_path)
+        print("EXISTS:", os.path.exists(full_path))
+
         if os.path.exists(full_path):
             return full_path
 
-    except Exception:
-        pass
+    except Exception as e:
+
+        print("IMAGE ERROR:", e)
 
     return None
 
@@ -123,6 +127,4 @@ if __name__ == "__main__":
 
     for key, value in recommendation.items():
 
-        print(
-            f"{key}: {value}"
-        )
+        print(f"{key}: {value}")
