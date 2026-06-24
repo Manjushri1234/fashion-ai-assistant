@@ -1,5 +1,5 @@
 streamlit==1.46.1
 pandas==2.3.3
 numpy==1.26.4
-pillow==12.2.0
+pillow==11.2.1
 faiss-cpu==1.11.0
