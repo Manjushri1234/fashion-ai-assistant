@@ -105,89 +105,86 @@ if st.button("Recommend Outfit"):
 
                 st.markdown("---")
 
-            col1, col2, col3, col4 = st.columns(4)
+            st.markdown("---")
 
-            with col1:
+col1, col2, col3, col4 = st.columns(4)
 
-                    st.markdown("### Topwear")
+with col1:
 
-                    st.write(
-                        "IMAGE PATH:",
-                        recommendation["topwear_image"]
-                    )
+    st.markdown("### Topwear")
 
-                    if recommendation["topwear_image"]:
+    st.write(
+        "IMAGE PATH:",
+        recommendation["topwear_image"]
+    )
 
-                        st.write(
-                            "FILE EXISTS:",
-                            os.path.exists(
-                                recommendation["topwear_image"]
-                            )
-                        )
+    if recommendation["topwear_image"]:
 
-                        st.image(
-                            recommendation["topwear_image"],
-                            use_container_width=True
-                        )
+        st.write(
+            "FILE EXISTS:",
+            os.path.exists(
+                recommendation["topwear_image"]
+            )
+        )
 
-                    else:
+        st.image(
+            recommendation["topwear_image"],
+            use_container_width=True
+        )
 
-                        st.error(
-                            "Image path is None"
-                        )
+    else:
 
-                    st.write(
-                        recommendation["topwear"]
-                    )
+        st.error(
+            "Image path is None"
+        )
 
-            with col2:
+    st.write(
+        recommendation["topwear"]
+    )
 
-                    st.markdown("### Bottomwear")
+with col2:
 
-                    if recommendation["bottomwear"]:
+    st.markdown("### Bottomwear")
 
-                        if recommendation["bottomwear_image"]:
-                            st.image(
-                                recommendation["bottomwear_image"],
-                                use_container_width=True
-                            )
+    if recommendation["bottomwear_image"]:
 
-                        st.write(
-                            recommendation["bottomwear"]
-                        )
+        st.image(
+            recommendation["bottomwear_image"],
+            use_container_width=True
+        )
 
-                    else:
+    st.write(
+        recommendation["bottomwear"]
+    )
 
-                        st.info(
-                            "Single-piece outfit"
-                        )
+with col3:
 
-            with col3:
+    st.markdown("### Footwear")
 
-                    st.markdown("### Footwear")
+    if recommendation["footwear_image"]:
 
-                    if recommendation["footwear_image"]:
-                        st.image(
-                            recommendation["footwear_image"],
-                            use_container_width=True
-                        )
+        st.image(
+            recommendation["footwear_image"],
+            use_container_width=True
+        )
 
-                    st.write(
-                        recommendation["footwear"]
-                    )
+    st.write(
+        recommendation["footwear"]
+    )
 
-            with col4:
+with col4:
 
-                    st.markdown("### Accessory")
+    st.markdown("### Accessory")
 
-                    if recommendation["accessory_image"]:
-                        st.image(
-                            recommendation["accessory_image"],
-                            use_container_width=True
-                        )
+    if recommendation["accessory_image"]:
 
-                    st.write(
-                        recommendation["accessory"]
-                    )
+        st.image(
+            recommendation["accessory_image"],
+            use_container_width=True
+        )
 
-                
+    st.write(
+        recommendation["accessory"]
+    )
+
+st.markdown("---")
