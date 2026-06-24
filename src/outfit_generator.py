@@ -2,80 +2,40 @@ from data_loader import load_products
 from data_loader import load_outfits
 import os
 
-def generate_outfit(outfit_id):
+def get_image_path(product):
 
-    products = load_products()
-    outfits = load_outfits()
+    if product is None:
+        return None
 
-    outfit = outfits[
-        outfits["outfit_id"] == outfit_id
-    ].iloc[0]
+    try:
 
-    hero = get_product(
-        products,
-        outfit["hero_id"]
-    )
+        image_path = str(product["image"]).strip()
 
-    print("\n===== HERO PRODUCT =====")
-    print(hero)
-    print(
-        "HERO IMAGE:",
-        hero["image"] if hero is not None else "NONE"
-    )
-    print("========================\n")
+        current_dir = os.path.dirname(
+            os.path.abspath(__file__)
+        )
 
-    second = get_product(
-        products,
-        outfit["second_id"]
-    )
+        project_root = os.path.dirname(
+            current_dir
+        )
 
-    footwear = get_product(
-        products,
-        outfit["footwear_id"]
-    )
+        full_path = os.path.join(
+            project_root,
+            "data",
+            image_path
+        )
 
-    accessory = get_product(
-        products,
-        outfit["accessory_1_id"]
-    )
+        print("IMAGE:", image_path)
+        print("FULL PATH:", full_path)
+        print("EXISTS:", os.path.exists(full_path))
 
-    recommendation = {
+        if os.path.exists(full_path):
+            return full_path
 
-        "theme":
-        outfit["theme"],
+        return None
 
-        "occasion":
-        outfit["occasion"],
+    except Exception as e:
 
-        "topwear":
-        hero["name"] if hero is not None else "N/A",
+        print("ERROR:", e)
 
-        "topwear_image":
-        get_image_path(hero),
-
-        "bottomwear":
-        second["name"] if second is not None else "N/A",
-
-        "bottomwear_image":
-        get_image_path(second),
-
-        "footwear":
-        footwear["name"] if footwear is not None else "N/A",
-
-        "footwear_image":
-        get_image_path(footwear),
-
-        "accessory":
-        accessory["name"] if accessory is not None else "N/A",
-
-        "accessory_image":
-        get_image_path(accessory),
-
-        "reason":
-        outfit["stylist_rationale"],
-
-        "similar_products":
-        []
-    }
-
-    return recommendation
+        return None
