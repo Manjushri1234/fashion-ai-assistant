@@ -15,27 +15,28 @@ def get_product(products, product_id):
     return product.iloc[0]
 
 
-def get_image_path(product_id):
+def get_image_path(product):
+
+    if product is None:
+        return None
 
     try:
 
-        source, image_id = str(product_id).split(
-            "_",
-            1
+        image_path = product["image"]
+
+        full_path = os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                "..",
+                "data",
+                image_path
+            )
         )
 
-        image_path = os.path.join(
-            "data",
-            "images",
-            source,
-            f"{image_id}.jpg"
-        )
-
-        if os.path.exists(image_path):
-            return image_path
+        if os.path.exists(full_path):
+            return full_path
 
     except Exception:
-
         pass
 
     return None
@@ -72,46 +73,41 @@ def generate_outfit(outfit_id):
 
     recommendation = {
 
-        "theme": outfit["theme"],
+        "theme":
+        outfit["theme"],
 
-        "occasion": outfit["occasion"],
+        "occasion":
+        outfit["occasion"],
 
         "topwear":
         hero["name"] if hero is not None else "N/A",
 
         "topwear_image":
-        get_image_path(
-            outfit["hero_id"]
-        ),
+        get_image_path(hero),
 
         "bottomwear":
         second["name"] if second is not None else "N/A",
 
         "bottomwear_image":
-        get_image_path(
-            outfit["second_id"]
-        ),
+        get_image_path(second),
 
         "footwear":
         footwear["name"] if footwear is not None else "N/A",
 
         "footwear_image":
-        get_image_path(
-            outfit["footwear_id"]
-        ),
+        get_image_path(footwear),
 
         "accessory":
         accessory["name"] if accessory is not None else "N/A",
 
         "accessory_image":
-        get_image_path(
-            outfit["accessory_1_id"]
-        ),
+        get_image_path(accessory),
 
         "reason":
         outfit["stylist_rationale"],
 
-        "similar_products": []
+        "similar_products":
+        []
     }
 
     return recommendation
