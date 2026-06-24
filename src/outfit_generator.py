@@ -1,6 +1,5 @@
 from data_loader import load_products
 from data_loader import load_outfits
-from similarity_search import get_similar_product_ids
 
 
 def get_product(products, product_id):
@@ -44,26 +43,8 @@ def generate_outfit(outfit_id):
         outfit["accessory_1_id"]
     )
 
+    # FAISS removed for Streamlit deployment
     similar_products = []
-
-    try:
-
-        similar_indices = get_similar_product_ids(
-            product_index=0,
-            top_k=5
-        )
-
-        for idx in similar_indices:
-
-            product = products.iloc[idx]
-
-            similar_products.append(
-                product["name"]
-            )
-
-    except Exception:
-
-        pass
 
     recommendation = {
 
