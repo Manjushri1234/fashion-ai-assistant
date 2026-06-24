@@ -18,6 +18,8 @@ def get_product(products, product_id):
 def get_image_path(product):
 
     if product is None:
+
+        print("PRODUCT IS NONE")
         return None
 
     try:
@@ -25,6 +27,8 @@ def get_image_path(product):
         image_path = str(
             product["image"]
         ).strip()
+
+        print("IMAGE COLUMN VALUE:", image_path)
 
         full_path = os.path.join(
             os.path.dirname(__file__),
@@ -35,6 +39,12 @@ def get_image_path(product):
 
         full_path = os.path.abspath(
             full_path
+        )
+
+        print("FULL PATH:", full_path)
+        print(
+            "FILE EXISTS:",
+            os.path.exists(full_path)
         )
 
         return full_path
