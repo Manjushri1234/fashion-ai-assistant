@@ -29,6 +29,11 @@ st.sidebar.write("Powered by NLP + FAISS")
 st.sidebar.markdown("---")
 st.sidebar.write("Top-3 Outfit Recommendation System")
 
+gender = st.sidebar.selectbox(
+    "Select Gender",
+    ["Men", "Women"]
+)
+
 st.title("👗 AI Fashion Assistant")
 
 st.write(
@@ -46,16 +51,8 @@ if st.button("Recommend Outfit"):
 
         intent = parse_query(query)
 
-        if intent["gender"] is None:
-
-            st.warning(
-                "Please specify whether you want a men's or women's outfit.\n\n"
-                "Examples:\n"
-                "- I need men's office outfit\n"
-                "- I need women's office outfit"
-            )
-
-            st.stop()
+        # Use dropdown gender instead of query gender
+        intent["gender"] = gender.lower()
 
         outfits = load_outfits()
 
