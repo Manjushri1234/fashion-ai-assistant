@@ -46,6 +46,17 @@ if st.button("Recommend Outfit"):
 
         intent = parse_query(query)
 
+        if intent["gender"] is None:
+
+            st.warning(
+                "Please specify whether you want a men's or women's outfit.\n\n"
+                "Examples:\n"
+                "- I need men's office outfit\n"
+                "- I need women's office outfit"
+            )
+
+            st.stop()
+
         outfits = load_outfits()
 
         results = retrieve_outfits(
