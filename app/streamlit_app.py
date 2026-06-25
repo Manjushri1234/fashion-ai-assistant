@@ -105,86 +105,82 @@ if st.button("Recommend Outfit"):
 
                 st.markdown("---")
 
-            st.markdown("---")
+                col1, col2, col3, col4 = st.columns(4)
 
-col1, col2, col3, col4 = st.columns(4)
+                with col1:
 
-with col1:
+                    st.markdown("### Topwear")
 
-    st.markdown("### Topwear")
+                    if recommendation["topwear_image"]:
 
-    st.write(
-        "IMAGE PATH:",
-        recommendation["topwear_image"]
-    )
+                        st.image(
+                            recommendation["topwear_image"],
+                            use_container_width=True
+                        )
 
-    if recommendation["topwear_image"]:
+                    st.write(
+                        recommendation["topwear"]
+                    )
 
-        st.write(
-            "FILE EXISTS:",
-            os.path.exists(
-                recommendation["topwear_image"]
-            )
-        )
+                with col2:
 
-        st.image(
-            recommendation["topwear_image"],
-            use_container_width=True
-        )
+                    st.markdown("### Bottomwear")
+
+                    if recommendation["bottomwear_image"]:
+
+                        st.image(
+                            recommendation["bottomwear_image"],
+                            use_container_width=True
+                        )
+
+                    st.write(
+                        recommendation["bottomwear"]
+                    )
+
+                with col3:
+
+                    st.markdown("### Footwear")
+
+                    if recommendation["footwear_image"]:
+
+                        st.image(
+                            recommendation["footwear_image"],
+                            use_container_width=True
+                        )
+
+                    st.write(
+                        recommendation["footwear"]
+                    )
+
+                with col4:
+
+                    st.markdown("### Accessory")
+
+                    if recommendation["accessory_image"]:
+
+                        st.image(
+                            recommendation["accessory_image"],
+                            use_container_width=True
+                        )
+
+                    st.write(
+                        recommendation["accessory"]
+                    )
+
+                st.markdown("---")
+
+                st.subheader(
+                    "Why This Outfit?"
+                )
+
+                st.write(
+                    recommendation["reason"]
+                )
+
+                st.markdown("---")
 
     else:
 
-        st.error(
-            "Image path is None"
+        st.warning(
+            "Please enter a query."
         )
-
-    st.write(
-        recommendation["topwear"]
-    )
-
-with col2:
-
-    st.markdown("### Bottomwear")
-
-    if recommendation["bottomwear_image"]:
-
-        st.image(
-            recommendation["bottomwear_image"],
-            use_container_width=True
-        )
-
-    st.write(
-        recommendation["bottomwear"]
-    )
-
-with col3:
-
-    st.markdown("### Footwear")
-
-    if recommendation["footwear_image"]:
-
-        st.image(
-            recommendation["footwear_image"],
-            use_container_width=True
-        )
-
-    st.write(
-        recommendation["footwear"]
-    )
-
-with col4:
-
-    st.markdown("### Accessory")
-
-    if recommendation["accessory_image"]:
-
-        st.image(
-            recommendation["accessory_image"],
-            use_container_width=True
-        )
-
-    st.write(
-        recommendation["accessory"]
-    )
-
-st.markdown("---")
