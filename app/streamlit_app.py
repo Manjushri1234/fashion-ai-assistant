@@ -111,16 +111,16 @@ if st.button("Recommend Outfit"):
 
                     st.markdown("### Topwear")
 
+                    st.write(
+                        recommendation["topwear"]
+                    )
+
                     if recommendation["topwear_image"]:
 
                         st.image(
                             recommendation["topwear_image"],
                             use_container_width=True
                         )
-
-                    st.write(
-                        recommendation["topwear"]
-                    )
 
                 with col2:
 
