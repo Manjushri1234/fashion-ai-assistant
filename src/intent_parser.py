@@ -10,20 +10,26 @@ def parse_query(query):
     # Gender Detection
     # =========================
 
-    if (
-        "female" in query
-        or "women" in query
-        or "woman" in query
-        or "girl" in query
-    ):
+    if any(word in query for word in [
+        "female",
+        "women",
+        "woman",
+        "girl",
+        "ladies",
+        "lady",
+        "her"
+    ]):
         gender = "women"
 
-    elif (
-        "male" in query
-        or "men" in query
-        or "man" in query
-        or "boy" in query
-    ):
+    elif any(word in query for word in [
+        "male",
+        "men",
+        "man",
+        "boy",
+        "gentlemen",
+        "gentleman",
+        "his"
+    ]):
         gender = "men"
 
     # =========================
